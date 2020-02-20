@@ -5,6 +5,7 @@ const Question = () => {
 
     //Define state
     const [quantity, handelQuantity] = useState(0);
+    const [error, handelError] = useState(false);
 
     //function that reads budget
     const setBudget = e => {
@@ -16,8 +17,13 @@ const Question = () => {
         e.preventDefault();
 
         // Validate
+        if(quantity < 1 || isNaN(quantity)){
+            handelError(true);
+            return;
+        }
 
         // If validation pass
+        handelError(false)
     }
 
     return (
@@ -38,6 +44,7 @@ const Question = () => {
                     type="submit"
                     className="button-primary u-full-width"
                     value="Define your budget"
+
                 />
             </form>
         </Fragment>
