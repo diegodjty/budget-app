@@ -1,7 +1,7 @@
 import React,{Fragment, useState} from 'react'
+import Error from './Error';
 
-
-const Question = () => {
+const Question = ({handelRemaining,handelBudget}) => {
 
     //Define state
     const [quantity, handelQuantity] = useState(0);
@@ -23,13 +23,16 @@ const Question = () => {
         }
 
         // If validation pass
-        handelError(false)
+        handelError(false);
+        handelBudget(quantity)
+        handelRemaining(quantity);
+        
     }
 
     return (
         <Fragment>
             <h2>Set your Budget</h2>
-
+            { error ? <Error message="The budget is incorrect" /> : null}
             <form
                 onSubmit={addBudget}
             >
