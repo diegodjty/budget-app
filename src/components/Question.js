@@ -1,7 +1,7 @@
 import React,{Fragment, useState} from 'react'
 import Error from './Error';
 
-const Question = ({handelRemaining,handelBudget}) => {
+const Question = ({handelRemaining,handelBudget,handelShowQuestion}) => {
 
     //Define state
     const [quantity, handelQuantity] = useState(0);
@@ -26,7 +26,7 @@ const Question = ({handelRemaining,handelBudget}) => {
         handelError(false);
         handelBudget(quantity)
         handelRemaining(quantity);
-        
+        handelShowQuestion(false);  
     }
 
     return (
