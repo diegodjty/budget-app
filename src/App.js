@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import Question from './components/Question';
 import Form from './components/Form';
 import List from './components/List';
@@ -12,14 +12,29 @@ function App() {
   const [remaining, handelRemaining] = useState(0)
   const [showQuestion, handelShowQuestion] = useState(true);
   const [expenses, handelExpenses] = useState([]);
+  const [expense, handelExpense] = useState({});
+  const [createExpense, handelCreateExpense] = useState(false);
 
-  // when a  new expense is added
-  const addNewExpense = expense =>{
-    handelExpenses([
-      ...expenses,
-      expense
-    ])  
-  }
+  // useEffect that updates remainging
+
+  useEffect(()=>{
+    if(createExpense){  
+
+      // add new budget
+
+      handelExpenses([
+        ...expenses,
+        expense
+      ]) 
+
+      // substract from budget
+      const remainingBudget = remaining - expense.quantity;
+      handelRemaining(remainingBudget);
+    }
+    handelCreateExpense(false)
+     },[expense])
+    
+  
 
   return (
     <div className="container">
@@ -36,7 +51,8 @@ function App() {
             <div className="row">
               <div className="one-half column">
                 <Form
-                  addNewExpense={addNewExpense}
+                  handelExpense={handelExpense}
+                  handelCreateExpense={handelCreateExpense}
                 />
               </div>
               <div className="one-half column">
