@@ -5,7 +5,7 @@ const Expenses = ({expenses}) => {
         <li className='gastos'>
             <p>
                 {expenses.name}
-                <span className='gasto'>{expenses.quantity}</span>
+                <span className='gasto'>$ {expenses.quantity}</span>
             </p>
         </li>
     )

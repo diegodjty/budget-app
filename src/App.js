@@ -32,7 +32,7 @@ function App() {
       handelRemaining(remainingBudget);
     }
     handelCreateExpense(false)
-     },[expense])
+     },[expense, createExpense, expenses, remaining])
     
   
 
