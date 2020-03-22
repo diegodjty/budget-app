@@ -102,3 +102,9 @@ h2 {
   padding: 1rem;
   color:white;
 }
+
+#new-budget{
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}

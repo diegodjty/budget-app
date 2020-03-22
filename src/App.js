@@ -14,7 +14,6 @@ function App() {
   const [expenses, handelExpenses] = useState(localStorage.getItem('list')?JSON.parse(localStorage.getItem('list')):[]);
   const [expense, handelExpense] = useState({});
   const [createExpense, handelCreateExpense] = useState(false);
-
   // useEffect that updates remainging
   useEffect(()=>{
     if(createExpense){ 

@@ -8,6 +8,12 @@ const Form = ({handelExpense,handelCreateExpense}) => {
     const [quantity, handelQuantity] = useState(0);
     const [error, handelError] = useState(false);
 
+
+
+    const clearStorage = ()=> {
+        localStorage.clear();
+        window.location.reload();
+    }
     // When user adds an expense
     const addExpense = e => {
         e.preventDefault();
@@ -65,6 +71,13 @@ const Form = ({handelExpense,handelCreateExpense}) => {
                 type="submit"
                 className="button-primary u-full-width"
                 value="Add Expense" 
+            />
+            <input 
+                type="button"
+                onClick={clearStorage}
+                className="u-full-width"
+                value="New Budget"
+                id="new-budget" 
             />
         </form>
      );
