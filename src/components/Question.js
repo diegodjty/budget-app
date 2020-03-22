@@ -26,7 +26,8 @@ const Question = ({handelRemaining,handelBudget,handelShowQuestion}) => {
         handelError(false);
         handelBudget(quantity)
         handelRemaining(quantity);
-        handelShowQuestion(false);  
+        handelShowQuestion(false); 
+         
     }
 
     return (

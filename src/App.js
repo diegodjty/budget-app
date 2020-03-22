@@ -8,33 +8,35 @@ import BudgetControl from './components/BudgetControl';
 function App() {
 
   // Define state
-  const [budget, handelBudget] = useState(0);
-  const [remaining, handelRemaining] = useState(0)
-  const [showQuestion, handelShowQuestion] = useState(true);
-  const [expenses, handelExpenses] = useState([]);
+  const [budget, handelBudget] = useState(parseInt(localStorage.getItem('budget')));
+  const [remaining, handelRemaining] = useState(localStorage.getItem('remainingBudget'))
+  const [showQuestion, handelShowQuestion] = useState(localStorage.getItem('question')?false:true);
+  const [expenses, handelExpenses] = useState(localStorage.getItem('list')?JSON.parse(localStorage.getItem('list')):[]);
   const [expense, handelExpense] = useState({});
   const [createExpense, handelCreateExpense] = useState(false);
 
   // useEffect that updates remainging
-
   useEffect(()=>{
-    if(createExpense){  
-
+    if(createExpense){ 
+       
       // add new budget
-
       handelExpenses([
         ...expenses,
         expense
       ]) 
-
       // substract from budget
       const remainingBudget = remaining - expense.quantity;
       handelRemaining(remainingBudget);
+
+      localStorage.setItem('budget',JSON.stringify(budget))
+      localStorage.setItem('remainingBudget',JSON.stringify(remainingBudget))
+      localStorage.setItem('question',showQuestion);
+      
     }
     handelCreateExpense(false)
-     },[expense, createExpense, expenses, remaining])
+
+  },[expense, createExpense, expenses, remaining])
     
-  
 
   return (
     <div className="container">
@@ -44,8 +46,9 @@ function App() {
           { showQuestion ? (
             <Question
               handelBudget={handelBudget}
-             handelRemaining={handelRemaining}
+              handelRemaining={handelRemaining}
               handelShowQuestion={handelShowQuestion}
+              localStorage={localStorage.getItem('budget')}
            />
           ):(
             <div className="row">

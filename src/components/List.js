@@ -2,6 +2,7 @@ import React from 'react'
 import Expenses from './Expenses';
 
 const List = ({expenses}) => {
+    localStorage.setItem('list',JSON.stringify(expenses));
     return (
         <div className="gastos-realizados">
             <h2>List</h2>
@@ -10,6 +11,7 @@ const List = ({expenses}) => {
                     key={expense.id}
                     expenses={expense}
                 />
+                
             ))}
         </div>
     )
